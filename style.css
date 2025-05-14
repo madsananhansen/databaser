@@ -40,12 +40,40 @@ button:hover{
 
 
 #myImage {
-  height: 500px; /* Adjust the height as needed */
+  height: 50vh; /* Adjust the height as needed */
   object-fit: contain; /* Ensures the image fits within the height */
   border-radius: 20px;
-  transition: transform 1s ease; /* Smooth transition */
+  transition: transform 0.3s ease; /* Smooth transition */
 }
 
 #myImage:hover {
   transform: scale(1.05); /* Slightly enlarge the image on hover */
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position the tooltip above the text */
+  left: 50%;
+  margin-left: -60px;
+  
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s; /* Fade in tooltip */
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1; /* Show the tooltip */
 }

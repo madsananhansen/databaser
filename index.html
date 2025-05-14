@@ -9,10 +9,11 @@
     <img id="myImage" src="billeder/PBH.png" />
     <p id="navn">Peter Brunn Hansen (Bedste old lærer)</p>
     <div>
-      <button type="button" onclick="previous()">Tidligere statue</button>
-      <button type="button" onclick="next()">Næste statue</button>
-      <button type="button" onclick="view()">Datering</button>
-      <button type="button" onclick="restart()">Genstart</button>
+      <button type="button" onclick="previous()" class="tooltip">Tidligere statue <span class="tooltiptext">Genvej: "LeftArrow"</span></button>
+      <button type="button" onclick="next()" class="tooltip">Næste statue <span class="tooltiptext">Genvej: "RightArrow"</span></button>
+      <button type="button" onclick="view()" class="tooltip">Datering <span class="tooltiptext">Genvej: "Space"</span></button>
+      <button type="button" onclick="random()" class="tooltip">Tifældig <span class="tooltiptext">Genvej: "Enter"</span></button>
+      <button type="button" onclick="restart()" class="tooltip">Genstart <span class="tooltiptext">Genvej: "R"</span></button>
     </div>
     <p id="svar"></p>
   </body>
@@ -24,6 +25,8 @@
   let data;
   var Navn = null;
   var Svar = null;
+  let min = 1;
+  let max = 9;
 
   function next() {
     var pic;
@@ -75,6 +78,21 @@
     document.getElementById("svar").innerHTML = null;
     document.getElementById("myImage").src = "billeder/PBH.png";
   }
+  function random() {
+    let newX;
+    do {
+      newX = Math.floor(Math.random() * (max - min + 1)) + min;
+    } while (newX === x);
+    x = newX;
+    var pic;
+
+    console.log(x);
+    genererTekst(x);
+    pic = "billeder/billede" + x + ".png";
+    document.getElementById("myImage").src = pic;
+    document.getElementById("navn").innerHTML = Navn;
+    document.getElementById("svar").innerHTML = null;
+  }
 
   window.onload = function () {
     var xhr = new XMLHttpRequest();
@@ -106,10 +124,16 @@
       event.preventDefault();
     }
   });
-  document.addEventListener("keydown", function (event) {
-    if (event.code === "KeyR") {
-      restart();
-      event.preventDefault();
-    }
-  });
+document.addEventListener("keydown", function (event) {
+  if (event.code === "KeyR") {
+    restart();
+    event.preventDefault();
+  }
+});
+document.addEventListener("keydown", function (event) {
+  if (event.code === "Enter") {
+    random();
+    event.preventDefault();
+  }
+});
 </script>

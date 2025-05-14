@@ -41,8 +41,8 @@
   function previous() {
     var pic;
     x -= 1;
-    if (x < 0) {
-      x = 0;
+    if (x < 1) {
+      x = 1;
     }
 
     console.log(x);
@@ -69,7 +69,7 @@
   }
 
   function restart() {
-    x = 1;
+    x = 0;
     document.getElementById("navn").innerHTML =
       "Peter Brunn Hansen (Bedste old lærer)";
     document.getElementById("svar").innerHTML = null;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+      /* Set a consistent height for all images */
+      #myImage {
+        height: 300px; /* Adjust the height as needed */
+        object-fit: contain; /* Ensures the image fits within the height */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Datering af statuer</h1>
+    <img id="myImage" src="billeder/PBH.png" />
+    <p id="navn">Peter Brunn Hansen (Bedste old lærer)</p>
+    <button type="button" onclick="next()">næste</button>
+    <button type="button" onclick="view()">svar</button>
+    <button type="button" onclick="restart()">genstart</button>
+    <p id="svar"></p>
+  </body>
+</html>
+
+<script>
+  let data;
+  var Navn = null;
+  var Svar = null;
+  let min = 1;
+  let max = 9;
+  let random = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  function next() {
+    random = Math.floor(Math.random() * (max - min + 1)) + min;
+    var pic;
+    console.log(random);
+    genererTekst(random);
+    pic = "billeder/billede" + random + ".png";
+    document.getElementById("myImage").src = pic;
+    document.getElementById("navn").innerHTML = Navn;
+    document.getElementById("svar").innerHTML = null;
+  }
+
+  function view() {
+    document.getElementById("svar").innerHTML = Svar;
+  }
+
+  function genererTekst(x) {
+    for (var i = 0; i < data.length; i++) {
+      if (data[i]["ID"] == random) {
+        Navn = data[i]["Navn"];
+        Svar = data[i]["Svar"];
+
+        break; // exit efter loop
+      }
+    }
+  }
+
+  function restart() {
+    random = 0;
+    document.getElementById("navn").innerHTML = "Peter Brunn Hansen (Bedste old lærer)";
+    document.getElementById("svar").innerHTML = null;
+    document.getElementById("myImage").src = "billeder/PBH.png";
+  }
+
+  window.onload = function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "test-data.csv", true);
+    xhr.responseType = "text";
+    xhr.onload = function () {
+      data = Papa.parse(xhr.responseText, {
+        header: true, // set this to true if the first row contains the header names
+      }).data;
+    };
+    xhr.send();
+  };
+</script>

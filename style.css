@@ -1,0 +1,51 @@
+body{
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1{
+    color: #333;
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+p{
+    color: #666;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+button{
+    background-color: #b4bfca;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover{
+    background-color: #a0a4b0;
+    transform: scale(1.05);
+}
+
+
+#myImage {
+  height: 500px; /* Adjust the height as needed */
+  object-fit: contain; /* Ensures the image fits within the height */
+  border-radius: 20px;
+  transition: transform 1s ease; /* Smooth transition */
+}
+
+#myImage:hover {
+  transform: scale(1.05); /* Slightly enlarge the image on hover */
+}
